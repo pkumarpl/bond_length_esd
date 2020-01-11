@@ -1,0 +1,2146 @@
+
+ =======================================================================
+   PROGRAM  L S D B  -  AUTOMATIC SETUP OF THE LOCAL COORDINATE SYSTEM
+ =======================================================================
+ Program determines the local coordinate system for each atom based on
+                connectivity and geometrical parameters
+ In addition it provides an interface to COPPENS LAB pseudoatom databank
+ Sample LSDB input file (lsdb.inp) can be printed out with : lsdb -h
+ -----------------------------------------------------------------------
+ Unauthorized use of this program is strictly prohibited and subject for
+ prosecution under the penalty of laws of the Russian Federation and USA
+ =======================================================================
+ Written by Dr. A. Volkov w/contrib. from M. Messerschmidt &
+ K.N. Jarzembska, P.M. Dominiak, P. Kumar
+ Copyright (c) 2006, A. Volkov            Last modified on October 2018
+ =======================================================================
+
+ -----------------------------------------------------------------------
+
+ LSDB options : 
+
+ Verbosity level =  4
+ Input file format = SHELX    file(s) = 1-formyl-3-thiosemicarbazide.ins
+ Search for complete fragments within  -2 ...  +2 unit cells
+ Threshold / Tolerance parameters : 
+   bond criterion (tol1) : d(i-j) < covR(i) + covR(j) +  0.200 Angstroms
+   ring  planarity criterion (tol2) : sigpln <   0.100 Angstroms
+   group planarity criterion (tol3) : sigpln <   0.100 Angstroms
+ Treatment of disorder :
+   apply Extend_H option
+   apply DB
+ Instructions for KEY table generation:
+   XYZUIJ=.F. all=.F. ordered=.F.
+     MULT=.T. all=.T. ordered=.F. kappas=.F.
+ Read pseudoatom parameters from databank file :
+   ubdb_2018.dat
+ Use simple model for determination of chemical equivalency
+ Use chemical/kappa constraints for H-atoms
+ Use chemical/kappa constraints for non-H atoms
+ Find rings with   3 -   8 atoms
+ Treatment of atoms that belong to 1 planar ring :
+   always m-symmetry : X - towards center, Y - neighbor in the ring
+ Extend H-atoms to standard/neutron distances and create files : 
+   'reset.bond' with RESET BOND instructions
+   'const.bond' with CONSTRAINTS instructions
+ Scale total population using sigmaPv method
+
+ -----------------------------------------------------------------------
+
+ Atomic covalent radii (Angstroms) : 
+
+   H  0.40   He 0.93   Li 1.23   Be 0.90   B  0.82   C  0.77   N  0.75
+   O  0.73   F  0.72   Ne 0.71   Na 1.54   Mg 1.36   Al 1.18   Si 1.11
+   P  1.06   S  1.02   Cl 0.99   Ar 0.98   K  2.03   Ca 1.74   Sc 1.44
+   Ti 1.32   V  1.22   Cr 1.18   Mn 1.17   Fe 1.17   Co 1.16   Ni 1.15
+   Cu 1.17   Zn 1.25   Ga 1.26   Ge 1.22   As 1.20   Se 1.16   Br 1.14
+   Kr 1.89   Rb 2.16   Sr 1.91   Y  1.62   Zr 1.45   Nb 1.34   Mo 1.30
+   Tc 1.27   Ru 1.25   Rh 1.25   Pd 1.28   Ag 1.34   Cd 1.41   In 1.44
+   Sn 1.41   Sb 1.40   Tr 1.36   I  1.33   Xe 1.31
+
+ -----------------------------------------------------------------------
+
+ Reading SHELX file : 1-formyl-3-thiosemicarbazide.ins                            
+
+ Cell parameters:      7.236     7.371     9.477    90.000    98.403    90.000
+
+ Lattice type : P
+ Lattice is CentroSymmetric
+
+ Symmetry operations : 
+   SYMM  1      + X, + Y, + Z
+   SYMM  2      - X, 1/2 + Y, 1/2 - Z
+
+ Symmetry operations with Center of Symmetry applied:    4
+
+ SYMM    1
+    1.000000    0.000000    0.000000         0.000000
+    0.000000    1.000000    0.000000         0.000000
+    0.000000    0.000000    1.000000         0.000000
+
+ SYMM    2
+   -1.000000    0.000000    0.000000         0.000000
+    0.000000    1.000000    0.000000         0.500000
+    0.000000    0.000000   -1.000000         0.500000
+
+ SYMM    3
+   -1.000000   -0.000000   -0.000000         0.000000
+   -0.000000   -1.000000   -0.000000         0.000000
+   -0.000000   -0.000000   -1.000000         0.000000
+
+ SYMM    4
+    1.000000   -0.000000   -0.000000         0.000000
+   -0.000000   -1.000000   -0.000000         0.500000
+   -0.000000   -0.000000    1.000000         0.500000
+
+ Final set of symmetry operations in matrix form:
+
+ Number of symmetry operations =    4
+
+ SYMM  1
+    1.000000    0.000000    0.000000         0.000000
+    0.000000    1.000000    0.000000         0.000000
+    0.000000    0.000000    1.000000         0.000000
+
+ SYMM  2
+   -1.000000    0.000000    0.000000         0.000000
+    0.000000    1.000000    0.000000         0.500000
+    0.000000    0.000000   -1.000000         0.500000
+
+ SYMM  3
+   -1.000000   -0.000000   -0.000000         0.000000
+   -0.000000   -1.000000   -0.000000         0.000000
+   -0.000000   -0.000000   -1.000000         0.000000
+
+ SYMM  4
+    1.000000   -0.000000   -0.000000         0.000000
+   -0.000000   -1.000000   -0.000000         0.500000
+   -0.000000   -0.000000    1.000000         0.500000
+
+ Number of atom types =    5
+   atom type = C     atomic number =   6
+   atom type = H     atomic number =   1
+   atom type = N     atomic number =   7
+   atom type = O     atomic number =   8
+   atom type = S     atomic number =  16
+
+ Transformation matrix CRYSTAL --> GLOBAL CARTESIAN :
+     7.23589993    -0.00000032    -1.38489044
+     0.00000000     7.37130022    -0.00000047
+     0.00000000     0.00000000     9.37506390
+
+ Transformation matrix GLOBAL CARTESIAN --> CRYSTAL :
+     0.13819981     0.00000001     0.02041497
+    -0.00000000     0.13566127     0.00000001
+     0.00000000    -0.00000000     0.10666594
+  
+
+    NO.  ATOM     IZ IU SF    XF       YF       ZF    OCCUP  U's -->
+     1   S((1))   16  2  5  0.27970  0.80965  0.54039 1.000  0.008  0.012  0.015 -0.001 -0.000  0.003
+     2   O((7))    8  2  4  0.86107  0.86949  0.83118 1.000  0.014  0.017  0.013  0.004  0.001 -0.003
+     3   N((3))    7  2  3  0.49279  0.55011  0.67237 1.000  0.011  0.012  0.016 -0.001  0.001  0.004
+     4   H((3A)    1  1  2  0.39116  0.49929  0.68897 1.000  0.016
+     5   H((3B)    1  1  2  0.59881  0.50020  0.70195 1.000  0.016
+     6   N((4))    7  2  3  0.64754  0.78226  0.57681 1.000  0.009  0.012  0.014 -0.001  0.001  0.003
+     7   H((4))    1  1  2  0.64433  0.88230  0.52983 1.000  0.014
+     8   N((5))    7  2  3  0.81872  0.70289  0.62615 1.000  0.009  0.014  0.012  0.002  0.001 -0.001
+     9   H((5))    1  1  2  0.86136  0.61759  0.57802 1.000  0.014
+    10   C((2))    6  2  1  0.48601  0.70520  0.60128 1.000  0.009  0.010  0.009 -0.001  0.001  0.000
+    11   C((6))    6  2  1  0.91833  0.76000  0.75011 1.000  0.009  0.013  0.011  0.002  0.001  0.000
+    12   H((6))    1  1  2  1.03795  0.71328  0.77556 1.000  0.013
+
+         ATOM      ------- FRACTIONAL -------    ------- CARTESIAN -------  FLAG
+      1  S((1))     0.27970  0.80965  0.54039     1.2755   5.9682   5.0662     0
+      2  O((7))     0.86107  0.86949  0.83118     5.0795   6.4093   7.7924     0
+      3  N((3))     0.49279  0.55011  0.67237     2.6346   4.0550   6.3035     0
+      4  H((3A)     0.39116  0.49929  0.68897     1.8762   3.6804   6.4591     0
+      5  H((3B)     0.59881  0.50020  0.70195     3.3608   3.6871   6.5808     0
+      6  N((4))     0.64754  0.78226  0.57681     3.8867   5.7663   5.4076     0
+      7  H((4))     0.64433  0.88230  0.52983     3.9286   6.5037   4.9672     0
+      8  N((5))     0.81872  0.70289  0.62615     5.0570   5.1812   5.8702     0
+      9  H((5))     0.86136  0.61759  0.57802     5.4322   4.5524   5.4190     0
+     10  C((2))     0.48601  0.70520  0.60128     2.6840   5.1982   5.6370     0
+     11  C((6))     0.91833  0.76000  0.75011     5.6061   5.6022   7.0323     0
+     12  H((6))     1.03795  0.71328  0.77556     6.4364   5.2578   7.2709     0
+
+ FLAG =  0 : normal atoms (    12 )
+      =  1 : atoms in special positions (     0 ) 
+      = -1 : disordered atoms (     0 ) 
+
+--------------------------------------------------------------------------------
+
+ CREATING CONNECTIVITY TABLE AND ELIMINATING OPEN ATOMS
+
+ **** ELIMINATION CYCLE =    0     NUMBER OF ATOMS =     12
+      1 S((1))   - C((2))  
+      2 O((7))   - C((6))  
+      3 N((3))   - H((3A)   H((3B)   C((2))  
+      4 H((3A)   - N((3))  
+      5 H((3B)   - N((3))  
+      6 N((4))   - H((4))   N((5))   C((2))  
+      7 H((4))   - N((4))  
+      8 N((5))   - N((4))   H((5))   C((6))  
+      9 H((5))   - N((5))  
+     10 C((2))   - S((1))   N((3))   N((4))  
+     11 C((6))   - O((7))   N((5))   H((6))  
+     12 H((6))   - C((6))  
+        NUMBER OF ATOMS REMOVED FROM THE TABLE =       7
+
+ **** ELIMINATION CYCLE =    1     NUMBER OF ATOMS =      5
+        NUMBER OF ATOMS REMOVED FROM THE TABLE =       2
+
+ **** ELIMINATION CYCLE =    2     NUMBER OF ATOMS =      3
+        NUMBER OF ATOMS REMOVED FROM THE TABLE =       2
+
+ **** ELIMINATION CYCLE =    3     NUMBER OF ATOMS =      1
+        NUMBER OF ATOMS REMOVED FROM THE TABLE =       1
+
+ **** ELIMINATION CYCLE =    4     NUMBER OF ATOMS =      0
+        NUMBER OF ATOMS REMOVED FROM THE TABLE =       0
+
+ CONNECTIVITY TABLE AFTER THE FINAL ELIMINATION CYCLE :
+
+--------------------------------------------------------------------------------
+
+ AUTOMATED SEARCH FOR   3 -  8 - MEMBERED RINGS
+
+ THERE ARE NO ATOMS IN THE REDUCED CONNECTIVITY TABLE
+
+ SEARCH FOR RINGS WILL NOT BE PERFORMED...
+
+ Timing for ring search u,s,t (s) :          0.0          0.0          0.0
+
+ -------------------------------------------------------------------------------
+
+ IDENTIFYING COVALENTLY-BONDED NEIGHBORS FOR EACH ATOM
+
+ Printout of neighbors of all atoms sorted by 
+    1) atomic number (descending)
+    2) hybridization ( ascending)
+    3) distance      ( ascending)
+
+ Atom #      1 = S((1))   :
+        6   3      1.704      10   C((2))  
+
+ Atom #      2 = O((7))   :
+        6   3      1.227      11   C((6))  
+
+ Atom #      3 = N((3))   :
+        6   3      1.324      10   C((2))  
+        1   1      0.860       5   H((3B)  
+        1   1      0.860       4   H((3A)  
+
+ Atom #      4 = H((3A)   :
+        7   3      0.860       3   N((3))  
+
+ Atom #      5 = H((3B)   :
+        7   3      0.860       3   N((3))  
+
+ Atom #      6 = N((4))   :
+        7   3      1.388       8   N((5))  
+        6   3      1.350      10   C((2))  
+        1   1      0.860       7   H((4))  
+
+ Atom #      7 = H((4))   :
+        7   3      0.860       6   N((4))  
+
+ Atom #      8 = N((5))   :
+        7   3      1.388       6   N((4))  
+        6   3      1.353      11   C((6))  
+        1   1      0.860       9   H((5))  
+
+ Atom #      9 = H((5))   :
+        7   3      0.860       8   N((5))  
+
+ Atom #     10 = C((2))   :
+       16   1      1.704       1   S((1))  
+        7   3      1.324       3   N((3))  
+        7   3      1.350       6   N((4))  
+
+ Atom #     11 = C((6))   :
+        8   1      1.227       2   O((7))  
+        7   3      1.353       8   N((5))  
+        1   1      0.930      12   H((6))  
+
+ Atom #     12 = H((6))   :
+        6   3      0.930      11   C((6))  
+
+ -------------------------------------------------------------------------------
+
+ Working with atom       1 : [S((1))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to S((1)) =    1
+
+     i       n     r(Ang)    atom       occ
+     1      10      1.704    C((2))     1.0000
+
+    There is(are)    1 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    6
+      neighbors of this type =    1
+      atoms : C((2))  
+
+ Number of covalently-bonded H-atoms =    0
+
+ is =    0
+
+ Angle   S((1)) - C((2)) - N((3)) =   121.87 deg.
+
+ Calling DetExcept...
+
+ DetExcept :: checking (?)c=S group...
+
+ New kappa set =    1
+
+ Symmetry = [m    ]
+
+ Local coordinate system definition : 
+
+ S((1))   C((2))    X  S((1))   N((3))   Y   R   2  5   1   4   m
+
+ Atom S((1)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =           16
+  iring =            0
+  inei  =            1
+  ity   =            1
+  imemb =            0
+  asymi = [M    ]
+  lPG   =  T
+  type =            1  atom =            6  neib =            1
+ 
+ Reading atom = ATOM 16 COMMENT S101 KJ  >c=S thio m     DATE Sat Nov  3 20:36:01 2018                                                                                                                                  
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+
+ ReadDB :: atom S((1)) was found in the DataBank
+
+ DB comment for S((1)) = [S101 KJ  >c=S thio m     DATE Sat Nov  3 20:36:01 2018]
+
+ Pseudoatom parameters assigned to S((1)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       6.4020      0.9800      0.9980      0.0370
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.000 -0.053
+     Quadrupoles:  0.000  0.000  0.000  0.000 -0.158
+       Octupoles:  0.000  0.000  0.000  0.000 -0.054  0.000  0.117
+   Hexadecapoles:  0.000  0.000  0.000  0.000  0.015  0.000 -0.037  0.000  0.065
+
+ CKS :: Atom=     1  kset=   1  nsft=   5
+
+ -------------------------------------------------------------------------------
+
+ Working with atom       2 : [O((7))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to O((7)) =    1
+
+     i       n     r(Ang)    atom       occ
+     1      11      1.227    C((6))     1.0000
+
+    There is(are)    1 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    6
+      neighbors of this type =    1
+      atoms : C((6))  
+
+ Number of covalently-bonded H-atoms =    0
+
+ is =    0
+
+ Angle   O((7)) - C((6)) - H((6)) =   117.88 deg.
+
+ Calling DetExcept...
+
+ DetExcept :: checking (?)c=O group...
+
+ DetExcept :: Unknown (?)c=O [3] functional group
+
+ See file group.ang for more info...
+
+
+ Trying to determine the KAPPA SET : 
+
+ Checking if atoms O((7)) and S((1)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ New kappa set =    2
+
+ Symmetry = [m    ]
+
+ Local coordinate system definition : 
+
+ O((7))   C((6))    X  O((7))   H((6))   Y   R   2  4   2   4   m
+
+ Atom O((7)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            8
+  iring =            0
+  inei  =            1
+  ity   =            1
+  imemb =            0
+  asymi = [M    ]
+  lPG   =  T
+  type =            1  atom =            6  neib =            1
+ 
+ Reading atom = ATOM  8 COMMENT O101 KJ  -c-cOO[-] carboxylate     DATE Sat Nov  3 20:35:53 2018                                                                                                                        
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O102 KJ  c-c(=O)-oh carboxylic     DATE Sat Nov  3 20:35:53 2018                                                                                                                        
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O103 KJ  c-c(=O)-o-c ester     DATE Sat Nov  3 20:35:53 2018                                                                                                                            
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O104 KJ  c-=c(=O)=-o-c aromatester     DATE Sat Nov  3 20:35:53 2018                                                                                                                    
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O105 KJ  c-c(=O)-n2 amide     DATE Sat Nov  3 20:35:54 2018                                                                                                                             
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O106 KJ  c-=c(=O)=-n2 aromatamide     DATE Sat Nov  3 20:35:54 2018                                                                                                                     
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O107 KJ  n-c(=O)-o-c carbamate ester     DATE Sat Nov  3 20:35:54 2018                                                                                                                  
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O108 KJ  n2-c(=O)-n2 urea     DATE Sat Nov  3 20:35:54 2018                                                                                                                             
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O109 KJ  n-=c(=O)=-n aromaturea     DATE Sat Nov  3 20:35:55 2018                                                                                                                       
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O110 KJ  c-c(=O)-c ketone     DATE Sat Nov  3 20:35:55 2018                                                                                                                             
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O111 BG2 c-=c(=O)=-c     DATE Sat Nov  3 20:35:55 2018                                                                                                                                  
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O125 SB  c-c(=O)-h aldehyde     DATE Sat Nov  3 20:35:55 2018                                                                                                                           
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O126 BG2 x-c(=O)-s     DATE Sat Nov  3 20:35:55 2018                                                                                                                                    
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   Exception entry in DataBank :
+ Exception was not identified for this atom - Skip DB entry...
+
+ Reading atom = ATOM  8 COMMENT O199 KJ  x-c(=O)-x            TEMP     DATE Sat Nov  3 20:35:55 2018                                                                                                                    
+   jnei=  1 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+
+ ReadDB :: atom O((7)) was found in the DataBank
+
+ DB comment for O((7)) = [O199 KJ  x-c(=O)-x            TEMP     DATE Sat Nov  3 20:35:55 2018]
+
+ Pseudoatom parameters assigned to O((7)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       6.0980      0.9890      1.1490      0.0490
+    2nd Monopole:  0.000
+         Dipoles: -0.005  0.000 -0.101
+     Quadrupoles:  0.000  0.000 -0.076  0.000 -0.071
+       Octupoles:  0.000  0.000  0.000  0.000 -0.005  0.000  0.015
+   Hexadecapoles:  0.000  0.000  0.000  0.000 -0.006  0.000  0.004  0.000  0.004
+
+ CKS :: Atom=     2  kset=   2  nsft=   4
+
+ -------------------------------------------------------------------------------
+
+ Working with atom       3 : [N((3))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to N((3)) =    3
+
+     i       n     r(Ang)    atom       occ
+     1       5      0.860    H((3B)     1.0000
+     2       4      0.860    H((3A)     1.0000
+     3      10      1.324    C((2))     1.0000
+
+    There is(are)    2 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    1
+      neighbors of this type =    2
+      atoms : H((3B)   H((3A)  
+  
+    Type =    2
+      atomic number =    6
+      neighbors of this type =    1
+      atoms : C((2))  
+
+ Number of covalently-bonded H-atoms =    2
+
+ Planarity test for   4-atom group : 
+
+  H((3B)    H((3A)    C((2))    N((3))  
+
+     P Q R S =      -0.0728      0.5047      0.8602      7.2772
+
+       dist. from H((3B)   to lsq plane =      0.000 Ang
+       dist. from H((3A)   to lsq plane =      0.000 Ang
+       dist. from C((2))   to lsq plane =      0.000 Ang
+       dist. from N((3))   to lsq plane =     -0.000 Ang
+
+     Esd atoms from the plane (sigpln) =       0.0000 ( tol =   0.1000 )
+
+     This group is planar = .T.
+
+ Atomic group ( 4 atoms) planarity (lPG) = .T.
+
+ Checking if atoms H((3B) and H((3A) are chemically equivalent:
+   YES, these atoms are chemically equivalent !
+
+ Same atoms :      5     4
+
+ Checking if atoms H((3B) and C((2)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms H((3A) and C((2)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ is =    1
+
+ Label =   301
+
+ Calling DetExcept...
+
+ Trying to determine the KAPPA SET : 
+
+ Checking if atoms N((3)) and S((1)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms N((3)) and O((7)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ New kappa set =    3
+
+ Symmetry = [mm2  ]
+
+ Local coordinate system definition : 
+
+ N((3))   C((2))    Z  N((3))   H((3B)   X   R   2  3   3   4   mm2
+
+ Atom N((3)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            7
+  iring =            0
+  inei  =            3
+  ity   =            2
+  imemb =            0
+  asymi = [MM2  ]
+  lPG   =  T
+  type =            1  atom =            1  neib =            2
+  type =            2  atom =            6  neib =            1
+ 
+ Reading atom = ATOM  7 COMMENT N101 KJ  -c=-N nitrile     DATE Sat Nov  3 20:35:47 2018                                                                                                                                
+   jnei=  1 jty=  1 jring=  0 asymr=[CYL  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N205 KJ  c1=N-c2     DATE Sat Nov  3 20:35:48 2018                                                                                                                                      
+   jnei=  2 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N204 KJ  c1--N--c1     DATE Sat Nov  3 20:35:48 2018                                                                                                                                    
+   jnei=  2 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N206 BG1 c1=N-h     DATE Sat Nov  3 20:35:48 2018                                                                                                                                       
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N203 KJ  c--N-n               TEMP     DATE Sat Nov  3 20:35:48 2018                                                                                                                    
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N202 KJ  c1=N-oh     DATE Sat Nov  3 20:35:48 2018                                                                                                                                      
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N208 BG2 c-N-s     DATE Sat Nov  3 20:35:48 2018                                                                                                                                        
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N333 BG2 N(-c)3 planar     TEMPesd     DATE Sat Nov  3 20:35:48 2018                                                                                                                    
+   jnei=  3 jty=  1 jring=  0 asymr=[3M   ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N313 KJ  c—N(-c1)2 c1=csp3 planar     DATE Sat Nov  3 20:35:48 2018                                                                                                                     
+   jnei=  3 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N314 KJ  c—N(-c2)2 c2=csp2 planar     DATE Sat Nov  3 20:35:48 2018                                                                                                                     
+   jnei=  3 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N315 KJ  c1--Nh-c2 planar     DATE Sat Nov  3 20:35:48 2018                                                                                                                             
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N311 KJ  h-N(--c1)2 planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                            
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  1 jndt =  1
+   type =  2 jatum =  6 jndt =  2
+ Reading atom = ATOM  7 COMMENT N310 KJ  c--Nh-h planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                               
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  1 jndt =  2
+   type =  2 jatum =  6 jndt =  1
+
+ ReadDB :: atom N((3)) was found in the DataBank
+
+ DB comment for N((3)) = [N310 KJ  c--Nh-h planar     DATE Sat Nov  3 20:35:49 2018]
+
+ Pseudoatom parameters assigned to N((3)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       4.9130      1.0020      1.0390      0.0670
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.000  0.000
+     Quadrupoles:  0.000  0.000 -0.050  0.000 -0.069
+       Octupoles:  0.000  0.000  0.000  0.103  0.000 -0.093  0.000
+   Hexadecapoles:  0.000  0.000  0.000  0.000 -0.006  0.000  0.007  0.000  0.009
+
+ CKS :: Atom=     3  kset=   3  nsft=   3
+
+ -------------------------------------------------------------------------------
+
+ Working with atom       4 : [H((3A)  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to H((3A) =    1
+
+     i       n     r(Ang)    atom       occ
+     1       3      0.860    N((3))     1.0000
+
+    There is(are)    1 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    7
+      neighbors of this type =    1
+      atoms : N((3))  
+
+ Number of covalently-bonded H-atoms =    0
+
+ is =    0
+
+ Hydrogen connected to an atom with  3 bonds (  2 - Hydrogen(s) )
+
+ Angle   H((3A) - N((3)) - C((2)) =   120.00 deg.
+
+ Trying to extend hydrogen H((3A) to standard distance :
+   X-H group : N((3))-H((3A) >  C-N-H2pl =  0.860 /  1.012 Angstroms
+
+ Calling DetExcept...
+
+ DetExcept :: checking x2-n-H group...
+
+ Planarity test for   4-atom group : 
+
+  H((3B)    H((3A)    C((2))    N((3))  
+
+     P Q R S =       0.0728     -0.5047     -0.8602     -7.2772
+
+       dist. from H((3B)   to lsq plane =     -0.000 Ang
+       dist. from H((3A)   to lsq plane =     -0.000 Ang
+       dist. from C((2))   to lsq plane =     -0.000 Ang
+       dist. from N((3))   to lsq plane =      0.000 Ang
+
+     Esd atoms from the plane (sigpln) =       0.0000 ( tol =   0.1000 )
+
+     This group is planar = .T.
+
+ Exception identified for H((3A) : Functional group = [PLANAR AMINE]
+
+ Trying to determine the KAPPA SET : 
+
+ New kappa set =    4
+
+ Symmetry = [cyl  ]
+
+ Local coordinate system definition : 
+
+ H((3A)   N((3))    Z  H((3A)   C((2))   Y   R   1  2   4   2   cyl
+
+ Atom H((3A) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            1
+  iring =            0
+  inei  =            1
+  ity   =            1
+  imemb =            0
+  asymi = [CYL  ]
+  lPG   =  T
+  type =            1  atom =            7  neib =            1
+ 
+ Reading atom = ATOM  1 COMMENT H101 KJ  x-cH3     DATE Sat Nov  3 20:34:54 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H102 KJ  x-cH2-x     DATE Sat Nov  3 20:34:59 2018                                                                                                                                      
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H103 KJ  H-cx3     DATE Sat Nov  3 20:35:04 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H104 KJ  H-cx2 c-aromatic or >c=x     DATE Sat Nov  3 20:35:07 2018                                                                                                                     
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H130 PK  H-c=_x(ethyne)     DATE Sat Nov  3 20:35:12 2018                                                                                                                               
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H131 PK  H2-c=x(ethene)     DATE Sat Nov  3 20:35:12 2018                                                                                                                               
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H105 KJ  x-nH3     DATE Sat Nov  3 20:35:12 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H106 KJ  x-nH2-x     DATE Sat Nov  3 20:35:13 2018                                                                                                                                      
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H100 KJ  H-nx3     DATE Sat Nov  3 20:35:13 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H107 KJ  x-nH2 planar n     DATE Sat Nov  3 20:35:13 2018                                                                                                                               
+   Exception entry in DataBank :
+      functional group   = [PLANAR AMINE]
+      group read from DB = [PLANAR AMINE]
+   jhp =  7 jsp =  3 jhnei=  2 asymr=[CYL  ]
+
+ ReadDB :: atom H((3A) was found in the DataBank
+
+ DB comment for H((3A) = [H107 KJ  x-nH2 planar n     DATE Sat Nov  3 20:35:13 2018]
+
+ Functional group = [PLANAR AMINE]
+
+ Pseudoatom parameters assigned to H((3A) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       0.9130      1.1550      1.3680      0.0390
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.153  0.000
+     Quadrupoles:  0.000  0.000  0.066  0.000  0.000
+       Octupoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+   Hexadecapoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+ CKS :: Atom=     4  kset=   4  nsft=   2
+
+ -------------------------------------------------------------------------------
+
+ Working with atom       5 : [H((3B)  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to H((3B) =    1
+
+     i       n     r(Ang)    atom       occ
+     1       3      0.860    N((3))     1.0000
+
+    There is(are)    1 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    7
+      neighbors of this type =    1
+      atoms : N((3))  
+
+ Number of covalently-bonded H-atoms =    0
+
+ is =    0
+
+ Hydrogen connected to an atom with  3 bonds (  2 - Hydrogen(s) )
+
+ Angle   H((3B) - N((3)) - C((2)) =   120.01 deg.
+
+ Trying to extend hydrogen H((3B) to standard distance :
+   X-H group : N((3))-H((3B) >  C-N-H2pl =  0.860 /  1.012 Angstroms
+
+ Calling DetExcept...
+
+ DetExcept :: checking x2-n-H group...
+
+ Planarity test for   4-atom group : 
+
+  H((3B)    H((3A)    C((2))    N((3))  
+
+     P Q R S =       0.0728     -0.5047     -0.8602     -7.2772
+
+       dist. from H((3B)   to lsq plane =     -0.000 Ang
+       dist. from H((3A)   to lsq plane =     -0.000 Ang
+       dist. from C((2))   to lsq plane =     -0.000 Ang
+       dist. from N((3))   to lsq plane =      0.000 Ang
+
+     Esd atoms from the plane (sigpln) =       0.0000 ( tol =   0.1000 )
+
+     This group is planar = .T.
+
+ Exception identified for H((3B) : Functional group = [PLANAR AMINE]
+
+ Trying to determine the KAPPA SET : 
+
+ Old kappa set =    4
+
+ Symmetry = [cyl  ]
+
+ Local coordinate system definition : 
+
+ H((3B)   N((3))    Z  H((3B)   C((2))   Y   R   1  2   4   2   cyl     H((3A)
+
+ Atom H((3B) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            1
+  iring =            0
+  inei  =            1
+  ity   =            1
+  imemb =            0
+  asymi = [CYL  ]
+  lPG   =  T
+  type =            1  atom =            7  neib =            1
+ 
+ Reading atom = ATOM  1 COMMENT H101 KJ  x-cH3     DATE Sat Nov  3 20:34:54 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H102 KJ  x-cH2-x     DATE Sat Nov  3 20:34:59 2018                                                                                                                                      
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H103 KJ  H-cx3     DATE Sat Nov  3 20:35:04 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H104 KJ  H-cx2 c-aromatic or >c=x     DATE Sat Nov  3 20:35:07 2018                                                                                                                     
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H130 PK  H-c=_x(ethyne)     DATE Sat Nov  3 20:35:12 2018                                                                                                                               
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H131 PK  H2-c=x(ethene)     DATE Sat Nov  3 20:35:12 2018                                                                                                                               
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H105 KJ  x-nH3     DATE Sat Nov  3 20:35:12 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H106 KJ  x-nH2-x     DATE Sat Nov  3 20:35:13 2018                                                                                                                                      
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H100 KJ  H-nx3     DATE Sat Nov  3 20:35:13 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H107 KJ  x-nH2 planar n     DATE Sat Nov  3 20:35:13 2018                                                                                                                               
+   Exception entry in DataBank :
+      functional group   = [PLANAR AMINE]
+      group read from DB = [PLANAR AMINE]
+   jhp =  7 jsp =  3 jhnei=  2 asymr=[CYL  ]
+
+ ReadDB :: atom H((3B) was found in the DataBank
+
+ DB comment for H((3B) = [H107 KJ  x-nH2 planar n     DATE Sat Nov  3 20:35:13 2018]
+
+ Functional group = [PLANAR AMINE]
+
+ Pseudoatom parameters assigned to H((3B) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       0.9130      1.1550      1.3680      0.0390
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.153  0.000
+     Quadrupoles:  0.000  0.000  0.066  0.000  0.000
+       Octupoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+   Hexadecapoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+ CKS :: Atom=     5  kset=   4  nsft=   2
+
+ -------------------------------------------------------------------------------
+
+ Working with atom       6 : [N((4))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to N((4)) =    3
+
+     i       n     r(Ang)    atom       occ
+     1       7      0.860    H((4))     1.0000
+     2      10      1.350    C((2))     1.0000
+     3       8      1.388    N((5))     1.0000
+
+    There is(are)    3 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    1
+      neighbors of this type =    1
+      atoms : H((4))  
+  
+    Type =    2
+      atomic number =    6
+      neighbors of this type =    1
+      atoms : C((2))  
+  
+    Type =    3
+      atomic number =    7
+      neighbors of this type =    1
+      atoms : N((5))  
+
+ Number of covalently-bonded H-atoms =    1
+
+ Planarity test for   4-atom group : 
+
+  H((4))    C((2))    N((5))    N((4))  
+
+     P Q R S =      -0.0802      0.5145      0.8537      7.2718
+
+       dist. from H((4))   to lsq plane =      0.000 Ang
+       dist. from C((2))   to lsq plane =      0.000 Ang
+       dist. from N((5))   to lsq plane =      0.000 Ang
+       dist. from N((4))   to lsq plane =     -0.000 Ang
+
+     Esd atoms from the plane (sigpln) =       0.0000 ( tol =   0.1000 )
+
+     This group is planar = .T.
+
+ Atomic group ( 4 atoms) planarity (lPG) = .T.
+
+ Checking if atoms H((4)) and C((2)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms H((4)) and N((5)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((2)) and N((5)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ is =    0
+
+ Label =   300
+
+ Calling DetExcept...
+
+ Trying to determine the KAPPA SET : 
+
+ Checking if atoms N((4)) and S((1)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms N((4)) and O((7)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms N((4)) and N((3)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. number of neighbor types
+
+ Checking if atoms N((4)) and H((3A) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms N((4)) and H((3B) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ New kappa set =    5
+
+ Symmetry = [m    ]
+
+ Local coordinate system definition : 
+
+ N((4))   N((5))    X  N((4))   C((2))   Y   R   2  3   5   4   m
+
+ Atom N((4)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            7
+  iring =            0
+  inei  =            3
+  ity   =            3
+  imemb =            0
+  asymi = [M    ]
+  lPG   =  T
+  type =            1  atom =            1  neib =            1
+  type =            2  atom =            6  neib =            1
+  type =            3  atom =            7  neib =            1
+ 
+ Reading atom = ATOM  7 COMMENT N101 KJ  -c=-N nitrile     DATE Sat Nov  3 20:35:47 2018                                                                                                                                
+   jnei=  1 jty=  1 jring=  0 asymr=[CYL  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N205 KJ  c1=N-c2     DATE Sat Nov  3 20:35:48 2018                                                                                                                                      
+   jnei=  2 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N204 KJ  c1--N--c1     DATE Sat Nov  3 20:35:48 2018                                                                                                                                    
+   jnei=  2 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N206 BG1 c1=N-h     DATE Sat Nov  3 20:35:48 2018                                                                                                                                       
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N203 KJ  c--N-n               TEMP     DATE Sat Nov  3 20:35:48 2018                                                                                                                    
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N202 KJ  c1=N-oh     DATE Sat Nov  3 20:35:48 2018                                                                                                                                      
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N208 BG2 c-N-s     DATE Sat Nov  3 20:35:48 2018                                                                                                                                        
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N333 BG2 N(-c)3 planar     TEMPesd     DATE Sat Nov  3 20:35:48 2018                                                                                                                    
+   jnei=  3 jty=  1 jring=  0 asymr=[3M   ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N313 KJ  c—N(-c1)2 c1=csp3 planar     DATE Sat Nov  3 20:35:48 2018                                                                                                                     
+   jnei=  3 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N314 KJ  c—N(-c2)2 c2=csp2 planar     DATE Sat Nov  3 20:35:48 2018                                                                                                                     
+   jnei=  3 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N315 KJ  c1--Nh-c2 planar     DATE Sat Nov  3 20:35:48 2018                                                                                                                             
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N311 KJ  h-N(--c1)2 planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                            
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N310 KJ  c--Nh-h planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                               
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N334 BG2 h-N(-s)2 planar      TEMP2     DATE Sat Nov  3 20:35:49 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N312 KJ  c-No--o nitro     DATE Sat Nov  3 20:35:49 2018                                                                                                                                
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N319 BG  c1-Ns-c2 planar      TEMP4     DATE Sat Nov  3 20:35:49 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N399 PK  c -Ns-c planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                               
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N332 BG2 h-Ns-h planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                                
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N336 BG2 c1-Nn-c2  planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                             
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N317 BG1 c1--Nh--n planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                             
+   jnei=  3 jty=  3 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  1 jndt =  1
+   type =  2 jatum =  6 jndt =  1
+   type =  3 jatum =  7 jndt =  1
+
+ ReadDB :: atom N((4)) was found in the DataBank
+
+ DB comment for N((4)) = [N317 BG1 c1--Nh--n planar     DATE Sat Nov  3 20:35:49 2018]
+
+ Pseudoatom parameters assigned to N((4)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       4.9940      0.9990      1.0630      0.0610
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.000 -0.024
+     Quadrupoles:  0.000  0.000  0.090  0.000 -0.029
+       Octupoles:  0.000  0.000  0.010  0.000 -0.015  0.000  0.138
+   Hexadecapoles: -0.008  0.000 -0.005  0.000  0.016  0.000 -0.008  0.000  0.011
+
+ CKS :: Atom=     6  kset=   5  nsft=   3
+
+ -------------------------------------------------------------------------------
+
+ Working with atom       7 : [H((4))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to H((4)) =    1
+
+     i       n     r(Ang)    atom       occ
+     1       6      0.860    N((4))     1.0000
+
+    There is(are)    1 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    7
+      neighbors of this type =    1
+      atoms : N((4))  
+
+ Number of covalently-bonded H-atoms =    0
+
+ is =    0
+
+ Hydrogen connected to an atom with  3 bonds (  1 - Hydrogen(s) )
+
+ Angle   H((4)) - N((4)) - C((2)) =   119.42 deg.
+
+ Trying to extend hydrogen H((4)) to standard distance :
+   X-H group : N((4))-H((4)) >  X2-N-H =  0.860 /  1.027 Angstroms
+
+ Calling DetExcept...
+
+ DetExcept :: checking x2-n-H group...
+
+ Planarity test for   4-atom group : 
+
+  H((4))    C((2))    N((5))    N((4))  
+
+     P Q R S =      -0.0802      0.5145      0.8537      7.2718
+
+       dist. from H((4))   to lsq plane =      0.000 Ang
+       dist. from C((2))   to lsq plane =      0.000 Ang
+       dist. from N((5))   to lsq plane =      0.000 Ang
+       dist. from N((4))   to lsq plane =     -0.000 Ang
+
+     Esd atoms from the plane (sigpln) =       0.0000 ( tol =   0.1000 )
+
+     This group is planar = .T.
+
+ Exception identified for H((4)) : Functional group = [PLANAR AMINE]
+
+ Trying to determine the KAPPA SET : 
+
+ New kappa set =    6
+
+ Symmetry = [cyl  ]
+
+ Local coordinate system definition : 
+
+ H((4))   N((4))    Z  H((4))   C((2))   Y   R   1  2   6   2   cyl
+
+ Atom H((4)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            1
+  iring =            0
+  inei  =            1
+  ity   =            1
+  imemb =            0
+  asymi = [CYL  ]
+  lPG   =  T
+  type =            1  atom =            7  neib =            1
+ 
+ Reading atom = ATOM  1 COMMENT H101 KJ  x-cH3     DATE Sat Nov  3 20:34:54 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H102 KJ  x-cH2-x     DATE Sat Nov  3 20:34:59 2018                                                                                                                                      
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H103 KJ  H-cx3     DATE Sat Nov  3 20:35:04 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H104 KJ  H-cx2 c-aromatic or >c=x     DATE Sat Nov  3 20:35:07 2018                                                                                                                     
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H130 PK  H-c=_x(ethyne)     DATE Sat Nov  3 20:35:12 2018                                                                                                                               
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H131 PK  H2-c=x(ethene)     DATE Sat Nov  3 20:35:12 2018                                                                                                                               
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H105 KJ  x-nH3     DATE Sat Nov  3 20:35:12 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H106 KJ  x-nH2-x     DATE Sat Nov  3 20:35:13 2018                                                                                                                                      
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H100 KJ  H-nx3     DATE Sat Nov  3 20:35:13 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H107 KJ  x-nH2 planar n     DATE Sat Nov  3 20:35:13 2018                                                                                                                               
+   Exception entry in DataBank :
+      functional group   = [PLANAR AMINE]
+      group read from DB = [PLANAR AMINE]
+   jhp =  7 jsp =  3 jhnei=  2 asymr=[CYL  ]
+ Reading atom = ATOM  1 COMMENT H108 KJ  x-nH-x planar n     DATE Sat Nov  3 20:35:13 2018                                                                                                                              
+   Exception entry in DataBank :
+      functional group   = [PLANAR AMINE]
+      group read from DB = [PLANAR AMINE]
+   jhp =  7 jsp =  3 jhnei=  1 asymr=[CYL  ]
+
+ ReadDB :: atom H((4)) was found in the DataBank
+
+ DB comment for H((4)) = [H108 KJ  x-nH-x planar n     DATE Sat Nov  3 20:35:13 2018]
+
+ Functional group = [PLANAR AMINE]
+
+ Pseudoatom parameters assigned to H((4)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       0.9090      1.1490      1.4080      0.0370
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.135  0.000
+     Quadrupoles:  0.000  0.000  0.059  0.000  0.000
+       Octupoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+   Hexadecapoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+ CKS :: Atom=     7  kset=   6  nsft=   2
+
+ -------------------------------------------------------------------------------
+
+ Working with atom       8 : [N((5))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to N((5)) =    3
+
+     i       n     r(Ang)    atom       occ
+     1       9      0.860    H((5))     1.0000
+     2      11      1.353    C((6))     1.0000
+     3       6      1.388    N((4))     1.0000
+
+    There is(are)    3 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    1
+      neighbors of this type =    1
+      atoms : H((5))  
+  
+    Type =    2
+      atomic number =    6
+      neighbors of this type =    1
+      atoms : C((6))  
+  
+    Type =    3
+      atomic number =    7
+      neighbors of this type =    1
+      atoms : N((4))  
+
+ Number of covalently-bonded H-atoms =    1
+
+ Planarity test for   4-atom group : 
+
+  H((5))    C((6))    N((4))    N((5))  
+
+     P Q R S =      -0.5372     -0.6793      0.4999     -3.3018
+
+       dist. from H((5))   to lsq plane =      0.000 Ang
+       dist. from C((6))   to lsq plane =      0.000 Ang
+       dist. from N((4))   to lsq plane =      0.000 Ang
+       dist. from N((5))   to lsq plane =     -0.000 Ang
+
+     Esd atoms from the plane (sigpln) =       0.0000 ( tol =   0.1000 )
+
+     This group is planar = .T.
+
+ Atomic group ( 4 atoms) planarity (lPG) = .T.
+
+ Checking if atoms H((5)) and C((6)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms H((5)) and N((4)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and N((4)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ is =    0
+
+ Label =   300
+
+ Calling DetExcept...
+
+ Trying to determine the KAPPA SET : 
+
+ Checking if atoms N((5)) and S((1)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms N((5)) and O((7)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms N((5)) and N((3)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. number of neighbor types
+
+ Checking if atoms N((5)) and H((3A) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms N((5)) and H((3B) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms N((5)) and N((4)) are chemically equivalent:
+   YES, these atoms are chemically equivalent !
+
+ Old kappa set =    5
+
+ Symmetry = [m    ]
+
+ Local coordinate system definition : 
+
+ N((5))   N((4))    X  N((5))   C((6))   Y   R   2  3   5   4   m       N((4))
+
+ Atom N((5)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            7
+  iring =            0
+  inei  =            3
+  ity   =            3
+  imemb =            0
+  asymi = [M    ]
+  lPG   =  T
+  type =            1  atom =            1  neib =            1
+  type =            2  atom =            6  neib =            1
+  type =            3  atom =            7  neib =            1
+ 
+ Reading atom = ATOM  7 COMMENT N101 KJ  -c=-N nitrile     DATE Sat Nov  3 20:35:47 2018                                                                                                                                
+   jnei=  1 jty=  1 jring=  0 asymr=[CYL  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N205 KJ  c1=N-c2     DATE Sat Nov  3 20:35:48 2018                                                                                                                                      
+   jnei=  2 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N204 KJ  c1--N--c1     DATE Sat Nov  3 20:35:48 2018                                                                                                                                    
+   jnei=  2 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N206 BG1 c1=N-h     DATE Sat Nov  3 20:35:48 2018                                                                                                                                       
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N203 KJ  c--N-n               TEMP     DATE Sat Nov  3 20:35:48 2018                                                                                                                    
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N202 KJ  c1=N-oh     DATE Sat Nov  3 20:35:48 2018                                                                                                                                      
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N208 BG2 c-N-s     DATE Sat Nov  3 20:35:48 2018                                                                                                                                        
+   jnei=  2 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N333 BG2 N(-c)3 planar     TEMPesd     DATE Sat Nov  3 20:35:48 2018                                                                                                                    
+   jnei=  3 jty=  1 jring=  0 asymr=[3M   ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N313 KJ  c—N(-c1)2 c1=csp3 planar     DATE Sat Nov  3 20:35:48 2018                                                                                                                     
+   jnei=  3 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N314 KJ  c—N(-c2)2 c2=csp2 planar     DATE Sat Nov  3 20:35:48 2018                                                                                                                     
+   jnei=  3 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N315 KJ  c1--Nh-c2 planar     DATE Sat Nov  3 20:35:48 2018                                                                                                                             
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N311 KJ  h-N(--c1)2 planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                            
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N310 KJ  c--Nh-h planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                               
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N334 BG2 h-N(-s)2 planar      TEMP2     DATE Sat Nov  3 20:35:49 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N312 KJ  c-No--o nitro     DATE Sat Nov  3 20:35:49 2018                                                                                                                                
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N319 BG  c1-Ns-c2 planar      TEMP4     DATE Sat Nov  3 20:35:49 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N399 PK  c -Ns-c planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                               
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N332 BG2 h-Ns-h planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                                
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N336 BG2 c1-Nn-c2  planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                             
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  7 COMMENT N317 BG1 c1--Nh--n planar     DATE Sat Nov  3 20:35:49 2018                                                                                                                             
+   jnei=  3 jty=  3 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  1 jndt =  1
+   type =  2 jatum =  6 jndt =  1
+   type =  3 jatum =  7 jndt =  1
+
+ ReadDB :: atom N((5)) was found in the DataBank
+
+ DB comment for N((5)) = [N317 BG1 c1--Nh--n planar     DATE Sat Nov  3 20:35:49 2018]
+
+ Pseudoatom parameters assigned to N((5)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       4.9940      0.9990      1.0630      0.0610
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.000 -0.024
+     Quadrupoles:  0.000  0.000  0.090  0.000 -0.029
+       Octupoles:  0.000  0.000  0.010  0.000 -0.015  0.000  0.138
+   Hexadecapoles: -0.008  0.000 -0.005  0.000  0.016  0.000 -0.008  0.000  0.011
+
+ CKS :: Atom=     8  kset=   5  nsft=   3
+
+ -------------------------------------------------------------------------------
+
+ Working with atom       9 : [H((5))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to H((5)) =    1
+
+     i       n     r(Ang)    atom       occ
+     1       8      0.860    N((5))     1.0000
+
+    There is(are)    1 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    7
+      neighbors of this type =    1
+      atoms : N((5))  
+
+ Number of covalently-bonded H-atoms =    0
+
+ is =    0
+
+ Hydrogen connected to an atom with  3 bonds (  1 - Hydrogen(s) )
+
+ Angle   H((5)) - N((5)) - C((6)) =   120.08 deg.
+
+ Trying to extend hydrogen H((5)) to standard distance :
+   X-H group : N((5))-H((5)) >  X2-N-H =  0.860 /  1.027 Angstroms
+
+ Calling DetExcept...
+
+ DetExcept :: checking x2-n-H group...
+
+ Planarity test for   4-atom group : 
+
+  H((5))    C((6))    N((4))    N((5))  
+
+     P Q R S =      -0.5372     -0.6793      0.4999     -3.3018
+
+       dist. from H((5))   to lsq plane =      0.000 Ang
+       dist. from C((6))   to lsq plane =      0.000 Ang
+       dist. from N((4))   to lsq plane =      0.000 Ang
+       dist. from N((5))   to lsq plane =     -0.000 Ang
+
+     Esd atoms from the plane (sigpln) =       0.0000 ( tol =   0.1000 )
+
+     This group is planar = .T.
+
+ Exception identified for H((5)) : Functional group = [PLANAR AMINE]
+
+ Trying to determine the KAPPA SET : 
+
+ Old kappa set =    6
+
+ Symmetry = [cyl  ]
+
+ Local coordinate system definition : 
+
+ H((5))   N((5))    Z  H((5))   C((6))   Y   R   1  2   6   2   cyl     H((4))
+
+ Atom H((5)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            1
+  iring =            0
+  inei  =            1
+  ity   =            1
+  imemb =            0
+  asymi = [CYL  ]
+  lPG   =  T
+  type =            1  atom =            7  neib =            1
+ 
+ Reading atom = ATOM  1 COMMENT H101 KJ  x-cH3     DATE Sat Nov  3 20:34:54 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H102 KJ  x-cH2-x     DATE Sat Nov  3 20:34:59 2018                                                                                                                                      
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H103 KJ  H-cx3     DATE Sat Nov  3 20:35:04 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H104 KJ  H-cx2 c-aromatic or >c=x     DATE Sat Nov  3 20:35:07 2018                                                                                                                     
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H130 PK  H-c=_x(ethyne)     DATE Sat Nov  3 20:35:12 2018                                                                                                                               
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H131 PK  H2-c=x(ethene)     DATE Sat Nov  3 20:35:12 2018                                                                                                                               
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H105 KJ  x-nH3     DATE Sat Nov  3 20:35:12 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H106 KJ  x-nH2-x     DATE Sat Nov  3 20:35:13 2018                                                                                                                                      
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H100 KJ  H-nx3     DATE Sat Nov  3 20:35:13 2018                                                                                                                                        
+
+ Functional group = [PLANAR AMINE], but no functional group specified for this entry..
+ Skipping DB entry...
+
+ Reading atom = ATOM  1 COMMENT H107 KJ  x-nH2 planar n     DATE Sat Nov  3 20:35:13 2018                                                                                                                               
+   Exception entry in DataBank :
+      functional group   = [PLANAR AMINE]
+      group read from DB = [PLANAR AMINE]
+   jhp =  7 jsp =  3 jhnei=  2 asymr=[CYL  ]
+ Reading atom = ATOM  1 COMMENT H108 KJ  x-nH-x planar n     DATE Sat Nov  3 20:35:13 2018                                                                                                                              
+   Exception entry in DataBank :
+      functional group   = [PLANAR AMINE]
+      group read from DB = [PLANAR AMINE]
+   jhp =  7 jsp =  3 jhnei=  1 asymr=[CYL  ]
+
+ ReadDB :: atom H((5)) was found in the DataBank
+
+ DB comment for H((5)) = [H108 KJ  x-nH-x planar n     DATE Sat Nov  3 20:35:13 2018]
+
+ Functional group = [PLANAR AMINE]
+
+ Pseudoatom parameters assigned to H((5)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       0.9090      1.1490      1.4080      0.0370
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.135  0.000
+     Quadrupoles:  0.000  0.000  0.059  0.000  0.000
+       Octupoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+   Hexadecapoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+ CKS :: Atom=     9  kset=   6  nsft=   2
+
+ -------------------------------------------------------------------------------
+
+ Working with atom      10 : [C((2))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to C((2)) =    3
+
+     i       n     r(Ang)    atom       occ
+     1       3      1.324    N((3))     1.0000
+     2       6      1.350    N((4))     1.0000
+     3       1      1.704    S((1))     1.0000
+
+    There is(are)    2 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    7
+      neighbors of this type =    2
+      atoms : N((3))   N((4))  
+  
+    Type =    2
+      atomic number =   16
+      neighbors of this type =    1
+      atoms : S((1))  
+
+ Number of covalently-bonded H-atoms =    0
+
+ Planarity test for   4-atom group : 
+
+  N((3))    N((4))    S((1))    C((2))  
+
+     P Q R S =      -0.0735      0.5042      0.8604      7.2746
+
+       dist. from N((3))   to lsq plane =      0.000 Ang
+       dist. from N((4))   to lsq plane =      0.000 Ang
+       dist. from S((1))   to lsq plane =      0.000 Ang
+       dist. from C((2))   to lsq plane =     -0.000 Ang
+
+     Esd atoms from the plane (sigpln) =       0.0005 ( tol =   0.1000 )
+
+     This group is planar = .T.
+
+ Atomic group ( 4 atoms) planarity (lPG) = .T.
+
+ Checking if atoms N((3)) and N((4)) are chemically equivalent:
+   YES, these atoms are chemically equivalent !
+
+ Same atoms :      3     6
+
+ Checking if atoms N((3)) and S((1)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms N((4)) and S((1)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ is =    1
+
+ Label =   301
+
+ Calling DetExcept...
+
+ Trying to determine the KAPPA SET : 
+
+ Checking if atoms C((2)) and S((1)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((2)) and O((7)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((2)) and N((3)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((2)) and H((3A) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((2)) and H((3B) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((2)) and N((4)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((2)) and H((4)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((2)) and N((5)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((2)) and H((5)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ New kappa set =    7
+
+ Symmetry = [mm2  ]
+
+ Local coordinate system definition : 
+
+ C((2))   S((1))    Z  C((2))   N((3))   X   R   2  1   7   4   mm2
+
+ Atom C((2)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            6
+  iring =            0
+  inei  =            3
+  ity   =            2
+  imemb =            0
+  asymi = [MM2  ]
+  lPG   =  T
+  type =            1  atom =            7  neib =            2
+  type =            2  atom =           16  neib =            1
+ 
+ Reading atom = ATOM  6 COMMENT C203 BG1 c=_C-c or c=C=c         TEMP     DATE Sat Nov  3 20:35:16 2018                                                                                                                 
+   jnei=  2 jty=  1 jring=  0 asymr=[CYL  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C202 PK  c=_C-h ethyne     DATE Sat Nov  3 20:35:16 2018                                                                                                                                
+   jnei=  2 jty=  2 jring=  0 asymr=[CYL  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C201 KJ  c-C=_n nitrile     DATE Sat Nov  3 20:35:16 2018                                                                                                                               
+   jnei=  2 jty=  2 jring=  0 asymr=[CYL  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C522 BG2 C(--c1)3 planar     DATE Sat Nov  3 20:35:16 2018                                                                                                                              
+   jnei=  3 jty=  1 jring=  0 asymr=[3M   ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C313 KJ  c1=C(-c2)-c1       TEMPesd     DATE Sat Nov  3 20:35:17 2018                                                                                                                   
+   jnei=  3 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C516 BG2 c1=C(-c2)-c3     DATE Sat Nov  3 20:35:17 2018                                                                                                                                 
+   jnei=  3 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C311 KJ  c1=Ch-c2     DATE Sat Nov  3 20:35:17 2018                                                                                                                                     
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C312 KJ  c1=Ch-c1           TEMPesd     DATE Sat Nov  3 20:35:17 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  1 jndt =  1
+   type =  2 jatum =  6 jndt =  2
+ Reading atom = ATOM  6 COMMENT C300 PK c1=C-h2 ethene      TEMPesd     DATE Sat Nov  3 20:35:17 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  1 jndt =  2
+   type =  2 jatum =  6 jndt =  1
+ Reading atom = ATOM  6 COMMENT C310 KJ  C(--n2)3 guanidine     DATE Sat Nov  3 20:35:18 2018                                                                                                                           
+   jnei=  3 jty=  1 jring=  0 asymr=[3M   ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C301 KJ  c2-C(--o1)2 carboxylate     DATE Sat Nov  3 20:35:18 2018                                                                                                                      
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   type =  2 jatum =  8 jndt =  2
+ Reading atom = ATOM  6 COMMENT C302 KJ  c2-C(=o)-oh carboxylic     DATE Sat Nov  3 20:35:18 2018                                                                                                                       
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C303 KJ  c-C(=o)-o-c ester     DATE Sat Nov  3 20:35:18 2018                                                                                                                            
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C510 BG2 c-C(=o)-o-c(=o) anhydride     DATE Sat Nov  3 20:35:18 2018                                                                                                                    
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C304 KJ  c-C(=o)-n amide     DATE Sat Nov  3 20:35:18 2018                                                                                                                              
+   jnei=  3 jty=  3 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C305 KJ  n-C(=o)-o-c carbamate ester     DATE Sat Nov  3 20:35:19 2018                                                                                                                  
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C306 KJ  c2-C(=o)-c2 or c1-C(=o)-c1     DATE Sat Nov  3 20:35:19 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  2
+   type =  2 jatum =  8 jndt =  1
+ Reading atom = ATOM  6 COMMENT C307 KJ  c1-C(=o)-c2     DATE Sat Nov  3 20:35:19 2018                                                                                                                                  
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C523 BG2 c1=C(-ox)-c2     DATE Sat Nov  3 20:35:19 2018                                                                                                                                 
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C314 KJ c1--C(-ox)--c1      TEMPesd     DATE Sat Nov  3 20:35:19 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  2
+   type =  2 jatum =  8 jndt =  1
+ Reading atom = ATOM  6 COMMENT C308 KJ  n2-C(=o)-n2     DATE Sat Nov  3 20:35:19 2018                                                                                                                                  
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  7 jndt =  2
+   type =  2 jatum =  8 jndt =  1
+ Reading atom = ATOM 6 COMMENT C315 KJ h-C(=o)-n                    DATE Fri Apr 22 15:46:05 2011                                                                                                                       
+   jnei=  3 jty=  3 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C399 SB  h-C(=o)-c     DATE Sat Nov  3 20:35:19 2018                                                                                                                                    
+   jnei=  3 jty=  3 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C519 BG2 nsp2(2)--Cc--nsp2(3) planar     DATE Sat Nov  3 20:35:20 2018                                                                                                                  
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C309 KJ  nsp2(3)--Cc-- nsp2(3)  planar     DATE Sat Nov  3 20:35:20 2018                                                                                                                
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   type =  2 jatum =  7 jndt =  2
+ Reading atom = ATOM  6 COMMENT C319 BG1 n—C(--c2)--c1 planar     DATE Sat Nov  3 20:35:20 2018                                                                                                                         
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C320 BG1 n—C(--c1)2 or n—C(--c2)2     DATE Sat Nov  3 20:35:20 2018                                                                                                                     
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  2
+   type =  2 jatum =  7 jndt =  1
+ Reading atom = ATOM  6 COMMENT C316 KJ h-C(--n)--c1     DATE Sat Nov  3 20:35:20 2018                                                                                                                                  
+   jnei=  3 jty=  3 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C521 BG2 c1—C(--s)--c1     DATE Sat Nov  3 20:35:20 2018                                                                                                                                
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  2
+   type =  2 jatum = 16 jndt =  1
+ Reading atom = ATOM  6 COMMENT C512 BG2 n1--C(--s)--n2     DATE Sat Nov  3 20:35:20 2018                                                                                                                               
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C812 PD  n1-C(=s)-n1     DATE Sat Nov  3 20:35:20 2018                                                                                                                                  
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+   type =  1 jatum =  7 jndt =  2
+   type =  2 jatum = 16 jndt =  1
+
+ ReadDB :: atom C((2)) was found in the DataBank
+
+ DB comment for C((2)) = [C812 PD  n1-C(=s)-n1     DATE Sat Nov  3 20:35:20 2018]
+
+ Pseudoatom parameters assigned to C((2)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       4.0990      0.9970      0.8640      0.0290
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.041  0.000
+     Quadrupoles:  0.000  0.000  0.157  0.000  0.190
+       Octupoles:  0.000  0.000  0.000  0.310  0.000 -0.282  0.000
+   Hexadecapoles:  0.000  0.000  0.000  0.000 -0.077  0.000  0.086  0.000  0.023
+
+ CKS :: Atom=    10  kset=   7  nsft=   1
+
+ -------------------------------------------------------------------------------
+
+ Working with atom      11 : [C((6))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to C((6)) =    3
+
+     i       n     r(Ang)    atom       occ
+     1      12      0.930    H((6))     1.0000
+     2       2      1.227    O((7))     1.0000
+     3       8      1.353    N((5))     1.0000
+
+    There is(are)    3 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    1
+      neighbors of this type =    1
+      atoms : H((6))  
+  
+    Type =    2
+      atomic number =    7
+      neighbors of this type =    1
+      atoms : N((5))  
+  
+    Type =    3
+      atomic number =    8
+      neighbors of this type =    1
+      atoms : O((7))  
+
+ Number of covalently-bonded H-atoms =    1
+
+ Planarity test for   4-atom group : 
+
+  H((6))    O((7))    N((5))    C((6))  
+
+     P Q R S =      -0.4503     -0.7500      0.4845     -3.3194
+
+       dist. from H((6))   to lsq plane =     -0.000 Ang
+       dist. from O((7))   to lsq plane =     -0.000 Ang
+       dist. from N((5))   to lsq plane =     -0.000 Ang
+       dist. from C((6))   to lsq plane =      0.000 Ang
+
+     Esd atoms from the plane (sigpln) =       0.0000 ( tol =   0.1000 )
+
+     This group is planar = .T.
+
+ Atomic group ( 4 atoms) planarity (lPG) = .T.
+
+ Checking if atoms H((6)) and O((7)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms H((6)) and N((5)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms O((7)) and N((5)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ is =    0
+
+ Label =   300
+
+ Calling DetExcept...
+
+ Trying to determine the KAPPA SET : 
+
+ Checking if atoms C((6)) and S((1)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and O((7)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and N((3)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and H((3A) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and H((3B) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and N((4)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and H((4)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and N((5)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and H((5)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. atomic numbers
+
+ Checking if atoms C((6)) and C((2)) are chemically equivalent:
+   atoms are NOT chemically equivalent :  Diff. number of neighbor types
+
+ New kappa set =    8
+
+ Symmetry = [m    ]
+
+ Local coordinate system definition : 
+
+ C((6))   O((7))    X  C((6))   N((5))   Y   R   2  1   8   4   m
+
+ Atom C((6)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            6
+  iring =            0
+  inei  =            3
+  ity   =            3
+  imemb =            0
+  asymi = [M    ]
+  lPG   =  T
+  type =            1  atom =            1  neib =            1
+  type =            2  atom =            7  neib =            1
+  type =            3  atom =            8  neib =            1
+ 
+ Reading atom = ATOM  6 COMMENT C203 BG1 c=_C-c or c=C=c         TEMP     DATE Sat Nov  3 20:35:16 2018                                                                                                                 
+   jnei=  2 jty=  1 jring=  0 asymr=[CYL  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C202 PK  c=_C-h ethyne     DATE Sat Nov  3 20:35:16 2018                                                                                                                                
+   jnei=  2 jty=  2 jring=  0 asymr=[CYL  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C201 KJ  c-C=_n nitrile     DATE Sat Nov  3 20:35:16 2018                                                                                                                               
+   jnei=  2 jty=  2 jring=  0 asymr=[CYL  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C522 BG2 C(--c1)3 planar     DATE Sat Nov  3 20:35:16 2018                                                                                                                              
+   jnei=  3 jty=  1 jring=  0 asymr=[3M   ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C313 KJ  c1=C(-c2)-c1       TEMPesd     DATE Sat Nov  3 20:35:17 2018                                                                                                                   
+   jnei=  3 jty=  1 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C516 BG2 c1=C(-c2)-c3     DATE Sat Nov  3 20:35:17 2018                                                                                                                                 
+   jnei=  3 jty=  1 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C311 KJ  c1=Ch-c2     DATE Sat Nov  3 20:35:17 2018                                                                                                                                     
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C312 KJ  c1=Ch-c1           TEMPesd     DATE Sat Nov  3 20:35:17 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C300 PK c1=C-h2 ethene      TEMPesd     DATE Sat Nov  3 20:35:17 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C310 KJ  C(--n2)3 guanidine     DATE Sat Nov  3 20:35:18 2018                                                                                                                           
+   jnei=  3 jty=  1 jring=  0 asymr=[3M   ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C301 KJ  c2-C(--o1)2 carboxylate     DATE Sat Nov  3 20:35:18 2018                                                                                                                      
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C302 KJ  c2-C(=o)-oh carboxylic     DATE Sat Nov  3 20:35:18 2018                                                                                                                       
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C303 KJ  c-C(=o)-o-c ester     DATE Sat Nov  3 20:35:18 2018                                                                                                                            
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C510 BG2 c-C(=o)-o-c(=o) anhydride     DATE Sat Nov  3 20:35:18 2018                                                                                                                    
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C304 KJ  c-C(=o)-n amide     DATE Sat Nov  3 20:35:18 2018                                                                                                                              
+   jnei=  3 jty=  3 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  6 jndt =  1
+   type =  2 jatum =  7 jndt =  1
+   type =  3 jatum =  8 jndt =  1
+ Reading atom = ATOM  6 COMMENT C305 KJ  n-C(=o)-o-c carbamate ester     DATE Sat Nov  3 20:35:19 2018                                                                                                                  
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C306 KJ  c2-C(=o)-c2 or c1-C(=o)-c1     DATE Sat Nov  3 20:35:19 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C307 KJ  c1-C(=o)-c2     DATE Sat Nov  3 20:35:19 2018                                                                                                                                  
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C523 BG2 c1=C(-ox)-c2     DATE Sat Nov  3 20:35:19 2018                                                                                                                                 
+   jnei=  3 jty=  2 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C314 KJ c1--C(-ox)--c1      TEMPesd     DATE Sat Nov  3 20:35:19 2018                                                                                                                   
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM  6 COMMENT C308 KJ  n2-C(=o)-n2     DATE Sat Nov  3 20:35:19 2018                                                                                                                                  
+   jnei=  3 jty=  2 jring=  0 asymr=[MM2  ] planar=T
+ jmemb=  0
+ Reading atom = ATOM 6 COMMENT C315 KJ h-C(=o)-n                    DATE Fri Apr 22 15:46:05 2011                                                                                                                       
+   jnei=  3 jty=  3 jring=  0 asymr=[M    ] planar=T
+ jmemb=  0
+   type =  1 jatum =  1 jndt =  1
+   type =  2 jatum =  7 jndt =  1
+   type =  3 jatum =  8 jndt =  1
+
+ ReadDB :: atom C((6)) was found in the DataBank
+
+ DB comment for C((6)) = [C315 KJ h-C(=o)-n                    DATE Fri Apr 22 15:46:05 2011]
+
+ Pseudoatom parameters assigned to C((6)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       3.9700      1.0020      0.8610      0.0020
+    2nd Monopole:  0.000
+         Dipoles:  0.011  0.000  0.120
+     Quadrupoles:  0.030  0.000 -0.305  0.000  0.103
+       Octupoles:  0.010  0.000  0.000  0.000  0.000  0.000  0.405
+   Hexadecapoles:  0.056  0.000  0.003  0.000  0.067  0.000 -0.030  0.000 -0.054
+
+ CKS :: Atom=    11  kset=   8  nsft=   1
+
+ -------------------------------------------------------------------------------
+
+ Working with atom      12 : [H((6))  ]     occ =     1.0000
+
+ Covalently-bonded neighbors to H((6)) =    1
+
+     i       n     r(Ang)    atom       occ
+     1      11      0.930    C((6))     1.0000
+
+    There is(are)    1 atom type(s) among neighbors
+  
+    Type =    1
+      atomic number =    6
+      neighbors of this type =    1
+      atoms : C((6))  
+
+ Number of covalently-bonded H-atoms =    0
+
+ is =    0
+
+ Hydrogen connected to an atom with  3 bonds (  1 - Hydrogen(s) )
+
+ Angle   H((6)) - C((6)) - O((7)) =   117.88 deg.
+
+ Trying to extend hydrogen H((6)) to standard distance :
+   X-H group : C((6))-H((6)) >  C-C=C-H =  0.930 /  1.082 Angstroms
+
+ Calling DetExcept...
+
+ Trying to determine the KAPPA SET : 
+
+ New kappa set =    9
+
+ Symmetry = [cyl  ]
+
+ Local coordinate system definition : 
+
+ H((6))   C((6))    Z  H((6))   O((7))   Y   R   1  2   9   2   cyl
+
+ Atom H((6)) :: will now read databank
+
+ Searching DataBank for a match : 
+  ityp  =            1
+  iring =            0
+  inei  =            1
+  ity   =            1
+  imemb =            0
+  asymi = [CYL  ]
+  lPG   =  T
+  type =            1  atom =            6  neib =            1
+ 
+ Reading atom = ATOM  1 COMMENT H101 KJ  x-cH3     DATE Sat Nov  3 20:34:54 2018                                                                                                                                        
+   jhp =  6 jsp =  4 jhnei=  3 asymr=[CYL  ]
+ Reading atom = ATOM  1 COMMENT H102 KJ  x-cH2-x     DATE Sat Nov  3 20:34:59 2018                                                                                                                                      
+   jhp =  6 jsp =  4 jhnei=  2 asymr=[CYL  ]
+ Reading atom = ATOM  1 COMMENT H103 KJ  H-cx3     DATE Sat Nov  3 20:35:04 2018                                                                                                                                        
+   jhp =  6 jsp =  4 jhnei=  1 asymr=[CYL  ]
+ Reading atom = ATOM  1 COMMENT H104 KJ  H-cx2 c-aromatic or >c=x     DATE Sat Nov  3 20:35:07 2018                                                                                                                     
+   jhp =  6 jsp =  3 jhnei=  1 asymr=[CYL  ]
+
+ ReadDB :: atom H((6)) was found in the DataBank
+
+ DB comment for H((6)) = [H104 KJ  H-cx2 c-aromatic or >c=x     DATE Sat Nov  3 20:35:07 2018]
+
+ Pseudoatom parameters assigned to H((6)) : 
+
+   Pval, Kappa, Kappa', sigmaPv =       1.0440      1.1080      1.1590      0.0350
+    2nd Monopole:  0.000
+         Dipoles:  0.000  0.179  0.000
+     Quadrupoles:  0.000  0.000  0.084  0.000  0.000
+       Octupoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+   Hexadecapoles:  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
+
+ CKS :: Atom=    12  kset=   9  nsft=   2
+
+--------------------------------------------------------------------------------
+
+ Creating XD parameter file...
+
+ ATOMS SEARCHED in DB, FOUND in DB, NOT FOUND in DB =       12      12       0
+
+ Using sigmaPv method for rescaling...
+
+ Using ALL atoms for fragment 1 !
+
+ ***** Rescaling Pv's in fragment =   1 *****
+
+ Sum-of-Pv[free]     =    40.000000 el.
+ Sum-of-Pv[databank] =    40.158001 el.
+ Difference          =    -0.158001 el. (   0.40 % )
+ Sum of sigma(Pv)    =     0.493000
+
+ Rescaling Sum-of-Pv to     40.000000 el.   ( Charge =   +0.000 el. )
+
+    NO  ATOM       Occup.    Pv(DB)      Pv(free)    sCorr       Pv(new)
+
+     1  S((1))     1.000     6.40200     6.00000    -0.01186     6.39014
+     2  O((7))     1.000     6.09800     6.00000    -0.01570     6.08230
+     3  N((3))     1.000     4.91300     5.00000    -0.02147     4.89153
+     4  H((3A)     1.000     0.91300     1.00000    -0.01250     0.90050
+     5  H((3B)     1.000     0.91300     1.00000    -0.01250     0.90050
+     6  N((4))     1.000     4.99400     5.00000    -0.01955     4.97445
+     7  H((4))     1.000     0.90900     1.00000    -0.01186     0.89714
+     8  N((5))     1.000     4.99400     5.00000    -0.01955     4.97445
+     9  H((5))     1.000     0.90900     1.00000    -0.01186     0.89714
+    10  C((2))     1.000     4.09900     4.00000    -0.00929     4.08971
+    11  C((6))     1.000     3.97000     4.00000    -0.00064     3.96936
+    12  H((6))     1.000     1.04400     1.00000    -0.01122     1.03278
+
+                    SUM     40.15800    40.00000    -0.15800    40.00000
+
+--------------------------------------------------------------------------------
+
+ XD instructions are in file            : xd_lsdb.mas
+ XD parameters are in file              : xd_lsdb.inp
+ Atomic coordinates w/extended H-atoms  : fixedH.ins
+ RESET BOND instructions for H-atoms    : reset.bond
+ CONSTRAINT instructions for H-atoms    : const.bond
+ Cartesian coordinates in PLATON format : lsdb.ang
+ Reduced structure in PLATON format     : reduced.ang & reduced_1.ang
+ PLATON plot file with local axes       : lsdb.spf
+ Program log file                       : lsdb.out
+
+ Local axes can be visualized in PLATON using command : platon -p lsdb.spf
+ Summary of DB atom types : grep 'DB comment' lsdb.out
+ Summary of X-H distances : grep -i 'x-h' lsdb.out
+ Summary of exceptions    : grep -i 'Exception identified' lsdb.out
+
+ Total program elapsed times u,s,t (s) :          0.4          0.1          0.5
+
+--------------------------------------------------------------------------------
+

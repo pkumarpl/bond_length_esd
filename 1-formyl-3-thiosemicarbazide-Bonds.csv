@@ -1,0 +1,12 @@
+Number,Atom1,Atom2,Type,Polymeric,Cyclicity,Length,SybylType
+1,S(1),C(2),Unknown,no,acyclic,1.7043(2),un
+2,O(7),C(6),Unknown,no,acyclic,1.2255(3),2
+3,N(3),H(3a,Unknown,no,acyclic,0.973(7),1
+4,N(3),H(3b,Unknown,no,acyclic,0.989(8),1
+5,N(3),C(2),Unknown,no,acyclic,1.3243(3),un
+6,N(4),H(4),Unknown,no,acyclic,0.966(8),1
+7,N(4),N(5),Unknown,no,acyclic,1.3865(3),un
+8,N(4),C(2),Unknown,no,acyclic,1.3489(3),un
+9,N(5),H(5),Unknown,no,acyclic,0.976(8),1
+10,N(5),C(6),Unknown,no,acyclic,1.3524(3),un
+11,C(6),H(6),Unknown,no,acyclic,1.059(8),1
