@@ -1,11 +1,14 @@
+
 import sys
 import collections
 from collections import deque
+import re 
+
 if len(sys.argv)!=4:
     print("expected arguments: lsdb_output csv_file output_file")
 
 lines = collections.deque()
-with open(sys.argv[1], 'r') as lsdb_out:
+with open(sys.argv[1], 'r', encoding="utf8", errors='ignore') as lsdb_out:
     lines = lsdb_out.readlines()
 #    0     1  2       3       4   5     6     7  8   9       10    
 #   X-H group : N((21)-H((21) >  X2-N-H =  0.777 /  1.027 Angstroms
@@ -28,7 +31,16 @@ def get_bond_label_h_first(label1, label2):
 
 def get_number(s):
     words=s.split('(')
-    return float(words[0])
+    #print(words[1])
+    esd = re.sub('[)]', '', words[1])
+    return float(words[0]), int(esd)
+
+    
+def get_esd(s):
+    words=s.split('(')
+    esd = re.sub('[)]', '', words[1]) 
+    #print(esd)
+    return int(esd)
 
 #   X-H group : O(1)-H(1) >  O-H in phenol =  0.853 /  0.992 Angstroms
 def get_bond_type(words):
@@ -41,6 +53,7 @@ def get_bond_type(words):
 	
 bond2type = dict()
 bond2length = dict()
+bond2lengthesd = dict()
 
 for line in lines:
     words = line.split()
@@ -64,20 +77,23 @@ for line in lines:
     if len(words)==8:
         if words[1][0]=='H' or  words[2][0]=='H':
             bond2length[get_bond_label_h_first(get_label(words[1]), get_label(words[2]))] = get_number(words[6])
+            #bond2lengthesd[get_bond_label_h_first(get_label(words[1]), get_label(words[2]))] = get_esd(words[6])
+            
 
 typeInstances = dict()
 
+
 for k, v in bond2type.items():
     if v in typeInstances:
-        typeInstances[v].append( [k,bond2length[k]] )
+        typeInstances[v].append( [k,bond2length[k]])
     else:
         typeInstances[v] = [[k,bond2length[k]]]
 
-
-
 with open(sys.argv[3],'w') as out:
     for type, data in typeInstances.items():
-        out.write(type+"\n")
-        for instance in data:
-            out.write("   " + str(instance[0]) + " "  + str(instance[1]) + "\n")
-
+    	#print(type)
+    	out.write(type+"\n")
+    	for instance in data:
+    		val =  ' '.join(map(str, instance[1])) 
+    		#print(val)
+    		out.write("   " + str(instance[0]) + " "  + val + "\n")
